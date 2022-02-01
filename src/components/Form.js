@@ -162,4 +162,7 @@ const FormStyles = styled.div`
         rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     }
   }
+  @media (min-width: 1100px) {
+    width: 50vw;
+  }
 `

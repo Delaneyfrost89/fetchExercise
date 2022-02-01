@@ -7,3 +7,9 @@ Use npm or yarn to install packages.
 ```bash
 npm install
 ```
+
+To run locally run:
+
+```bash
+npm run start
+```
