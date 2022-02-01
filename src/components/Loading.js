@@ -8,6 +8,7 @@ const Loading = () => (
 
 export default Loading
 
+// STYLES
 const WrapperStyles = styled.div`
   padding: 6rem;
 `

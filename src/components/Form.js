@@ -3,20 +3,22 @@ import styled from 'styled-components'
 import Loading from './Loading'
 
 const Form = () => {
-  // occupation and state data fetched from URL.
+  // Occupation and state data fetched from URL.
   const [data, setData] = useState()
+  // Values from user form fields.
   const [formData, setFormData] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [postStatus, setPostStatus] = useState(false)
 
-  // fetch occupation and state data on component mount.
+  // Fetch occupation and state data on component mount.
   useEffect(() => {
     fetch('https://frontend-take-home.fetchrewards.com/form')
       .then((response) => response.json())
       .then((data) => setData(data))
   }, [])
 
+  // Run on form submit
   function handleSubmit(event) {
     event.preventDefault()
     let formInputs = event.target
@@ -31,6 +33,7 @@ const Form = () => {
     setFormSubmitted(true)
     setFormData((formData) => ({ ...formData, ...data }))
     formInputs.reset()
+    // POST request
     postData(data)
   }
 
@@ -42,6 +45,7 @@ const Form = () => {
       },
       body: JSON.stringify(formInputs),
     }).then((res) => {
+      // setTimeout function to prevent flash of loading and response fail message.
       setTimeout(() => {
         setPostStatus(res.ok)
         setIsLoading(false)
@@ -49,6 +53,7 @@ const Form = () => {
     })
   }
 
+  // Show form until user submit.
   if (!formSubmitted) {
     return (
       <FormStyles>
@@ -82,6 +87,7 @@ const Form = () => {
       </FormStyles>
     )
   }
+  // Display after user submit.
   if (formSubmitted) {
     return (
       <FormStyles>
@@ -108,6 +114,7 @@ const Form = () => {
 
 export default Form
 
+// STYLES
 const FormStyles = styled.div`
   width: 80%;
   background: #fff;
